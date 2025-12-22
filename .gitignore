@@ -1,0 +1,16 @@
+# Secrets
+*.key
+*.pem
+kubeconfig
+.env
+
+# Large backups
+*.rdb
+*.dump
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Azure cache
+.azure/
