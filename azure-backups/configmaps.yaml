@@ -1,0 +1,49 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIE6DCCAtCgAwIBAgIQOPzg2TQUTzjaA6nJ6Z61RDANBgkqhkiG9w0BAQsFADAN
+      MQswCQYDVQQDEwJjYTAgFw0yNTEyMTkxNzEwNTBaGA8yMDU1MTIxOTE3MjA1MFow
+      DTELMAkGA1UEAxMCY2EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDs
+      L2yWTKYndy0LzplQQISriy/85VxDHV5qJ/W8ilY1qYVvOiA127f0Euf3wjGHGJcN
+      5SsfcmFJS+lkatPn6D2P39/RESZ4DNPg9jSFf0DW7qW8KtzQtmUd6DJYuW+22kqr
+      usz1zc3/1vBSHhnYrgX8k0gpJcoZFR5adeb0xnrlsxRDqiS0fJhuXs4neR+eNvb5
+      NSX4N5aHBeELlrBhMF7O/DO0H8s+kZo5xpETOgicGWGujLGuJnZLhf/3v9hCEXlE
+      5oWjpJ139J6ghYASaVNzUCZmTtvC/GFUGBJBFWYNQf9yoNiaPWQE2WCqlBtlv4pS
+      K+pLREMlsxy1qY4MfnBR629R9sklQ/4yY85Wh9ZBOtweZqoOb6HHM+wyK7PQjbM4
+      vjBLZKCWOqeqMDHfjPEiSdF05IA9d4MyzCNEVsFQLfBE9B6oQG/syLPRCS92uKtA
+      Y0AJtlCrzILVv80nt//bBAkCOgkq5b/DU42V1IBBPtJJ63OAjTHj1WovuUXD5xAs
+      ly+C/itMQwpOaQA9ygaTxrlAW3j2/UYUksRlirCCRJm5WQ5n3/k6Oa8ubTwrbxN6
+      aBhAxYhC9dXL1jDWNHNLzQ5JtExkUvntScFQ4v01DZrYMI1aEgEw6o0CKO99unmD
+      T7XnmcDX+2IdEhQPQ9hKYghab4tKCR1YRvZCOzoHKwIDAQABo0IwQDAOBgNVHQ8B
+      Af8EBAMCAqQwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUjOoFd5n6X960Shp4
+      xBpSw53mh9swDQYJKoZIhvcNAQELBQADggIBALgybJPtqCZn4kTVxvs/f/NItQ/K
+      L+BDc0MhpeJW5vKA2TjpQB9CrnQNAhpWG3d3G8UXzJWezZer67s+S0X2ONhX7aHQ
+      nifN4fBzVmQwhXR0W9WoyT3a2Bh/5qC3Wrw3fO9dvD6zu78gUOn0GpDEGQN04qD2
+      xoX8APNAMZ8D6UYg9exB09h3EGL5MtR3oBC6P+sNRvu8VL9bSMQjvM9riQ0B3lYG
+      PVBkCRQmbAlKBIIho4p5JHojsYHzSpBY2mWsYozT6huIZBxXxx/sSpOTGcA2dN0B
+      zsj7LEOfIIgfD3bWXJu/oQYXyXChdJBpYvJh31m0T4qkkZELsC3kQ7zbLLiGlhLr
+      Udves7CUE4M2hNh6uxHyXc+l5Abq7d8TWf/sx86dHDuQKVQIteV2r1NHcq7D9jGk
+      ZpCSNB44J/JgZubeINDjqzDgza37AH/MfFI8w1QAVaia18lVF2wGrhH25+qcZdYW
+      vrE55DRbQJvhhZEnAa87D8b9RMDPw/4G3HSltUuNOVAwj9IHFFKycejXefBUjk1w
+      jiEkEhkDha/ZkIXfhcPN6NTliFToELYdVVTG1TqS3H2wsSH64vbryA+PyIAgMxzo
+      bR/yKCA3f/qGGxqphqytZ/n6YNjn0VTumg5fBTCSwgMLKmWRPXZYXu/tnCHJKMID
+      CMKGeoQsUn0EVr+J
+      -----END CERTIFICATE-----
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubernetes.io/description: Contains a CA bundle that can be used to verify the
+        kube-apiserver when using internal endpoints such as the internal service
+        IP or kubernetes.default.svc. No other usage is guaranteed across distributions
+        of Kubernetes clusters.
+    creationTimestamp: "2025-12-19T17:22:19Z"
+    name: kube-root-ca.crt
+    namespace: default
+    resourceVersion: "440"
+    uid: 92269fa2-9ded-423f-bc30-0b82accc9f11
+kind: List
+metadata:
+  resourceVersion: ""

@@ -1,0 +1,1982 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-12-19T18:45:53Z"
+    generateName: db-74574d66dd-
+    generation: 1
+    labels:
+      app: db
+      pod-template-hash: 74574d66dd
+    name: db-74574d66dd-hqk6m
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: db-74574d66dd
+      uid: e731cacc-f9a9-442c-8fb2-abf97b4b4b7e
+    resourceVersion: "23270"
+    uid: b19aa51b-ffe4-4c74-85f4-eee219edc5ab
+  spec:
+    containers:
+    - env:
+      - name: POSTGRES_USER
+        value: postgres
+      - name: POSTGRES_PASSWORD
+        value: postgres
+      image: postgres:15-alpine
+      imagePullPolicy: IfNotPresent
+      name: postgres
+      ports:
+      - containerPort: 5432
+        name: postgres
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/lib/postgresql/data
+        name: db-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kwhrg
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: db-data
+    - name: kube-api-access-kwhrg
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:10Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:53Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:10Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:10Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:53Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://3ba7f00de37bb9c72d9303467065ce374a5714977996f0a847b1869a05db922c
+      image: docker.io/library/postgres:15-alpine
+      imageID: docker.io/library/postgres@sha256:b3968e348b48f1198cc6de6611d055dbad91cd561b7990c406c3fc28d7095b21
+      lastState: {}
+      name: postgres
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T18:46:09Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/lib/postgresql/data
+        name: db-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kwhrg
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.174
+    podIPs:
+    - ip: 10.244.0.174
+    qosClass: BestEffort
+    startTime: "2025-12-19T18:45:53Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-12-19T18:45:55Z"
+    generateName: redis-6c5fb9c4b7-
+    generation: 1
+    labels:
+      app: redis
+      pod-template-hash: 6c5fb9c4b7
+    name: redis-6c5fb9c4b7-q7ndl
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: redis-6c5fb9c4b7
+      uid: 3767a562-a821-4c36-91ca-475a7c96cdd7
+    resourceVersion: "23237"
+    uid: 8d2913e4-9dc8-4c03-a6ef-5b2ba82ea3d8
+  spec:
+    containers:
+    - image: redis:alpine
+      imagePullPolicy: IfNotPresent
+      name: redis
+      ports:
+      - containerPort: 6379
+        name: redis
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /data
+        name: redis-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gx62x
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: redis-data
+    - name: kube-api-access-gx62x
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:04Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:55Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:04Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:04Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:55Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://13c10b9bb1124c9c9d9ee6da611913bc9d4bbc9dbf3de845788bf9dce423c6f9
+      image: docker.io/library/redis:alpine
+      imageID: docker.io/library/redis@sha256:6cbef353e480a8a6e7f10ec545f13d7d3fa85a212cdcc5ffaf5a1c818b9d3798
+      lastState: {}
+      name: redis
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T18:46:03Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /data
+        name: redis-data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gx62x
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.128
+    podIPs:
+    - ip: 10.244.0.128
+    qosClass: BestEffort
+    startTime: "2025-12-19T18:45:55Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:51+05:00"
+    creationTimestamp: "2025-12-19T20:01:52Z"
+    generateName: result-7df6cfd5f8-
+    generation: 1
+    labels:
+      app: result
+      pod-template-hash: 7df6cfd5f8
+    name: result-7df6cfd5f8-28xds
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: result-7df6cfd5f8
+      uid: 35ccdd56-6b30-4467-9f40-9b7ed5a82117
+    resourceVersion: "43615"
+    uid: be505b26-92f3-44cd-aaa6-a57870070df1
+  spec:
+    containers:
+    - image: dockersamples/examplevotingapp_result
+      imagePullPolicy: Always
+      name: result
+      ports:
+      - containerPort: 80
+        name: result
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-294xd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-294xd
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:55Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:52Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:55Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:55Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:52Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://2d7dc8153b3a14e07c7b5494ada7a46d71a1362b8d5c44e6a0d3448ac5ca9923
+      image: docker.io/dockersamples/examplevotingapp_result:latest
+      imageID: docker.io/dockersamples/examplevotingapp_result@sha256:06c50992ab258e1d83406784040842bb920f6938eabac19261e7ec634f878935
+      lastState: {}
+      name: result
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T20:01:54Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-294xd
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.195
+    podIPs:
+    - ip: 10.244.0.195
+    qosClass: BestEffort
+    startTime: "2025-12-19T20:01:52Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:51+05:00"
+    creationTimestamp: "2025-12-19T20:01:55Z"
+    generateName: result-7df6cfd5f8-
+    generation: 1
+    labels:
+      app: result
+      pod-template-hash: 7df6cfd5f8
+    name: result-7df6cfd5f8-w4wqm
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: result-7df6cfd5f8
+      uid: 35ccdd56-6b30-4467-9f40-9b7ed5a82117
+    resourceVersion: "43658"
+    uid: e9b5e21c-1c3d-40f7-9159-18aca5e0c158
+  spec:
+    containers:
+    - image: dockersamples/examplevotingapp_result
+      imagePullPolicy: Always
+      name: result
+      ports:
+      - containerPort: 80
+        name: result
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rzn8j
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-rzn8j
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:58Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:55Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:58Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:58Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:55Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://10d49b0ef1b1a369098958fb821235d3a4dc5bc08ff9db27d6fcc7678af56e31
+      image: docker.io/dockersamples/examplevotingapp_result:latest
+      imageID: docker.io/dockersamples/examplevotingapp_result@sha256:06c50992ab258e1d83406784040842bb920f6938eabac19261e7ec634f878935
+      lastState: {}
+      name: result
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T20:01:57Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rzn8j
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.37
+    podIPs:
+    - ip: 10.244.0.37
+    qosClass: BestEffort
+    startTime: "2025-12-19T20:01:55Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:15+05:00"
+    creationTimestamp: "2025-12-19T20:01:19Z"
+    generateName: vote-77cc578dd-
+    generation: 1
+    labels:
+      app: vote
+      pod-template-hash: 77cc578dd
+    name: vote-77cc578dd-xmww8
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: vote-77cc578dd
+      uid: 5b846fe6-ad14-4890-806b-33d96201abc0
+    resourceVersion: "43438"
+    uid: fd3ad0d3-d7e1-428d-9cad-c4171362ba86
+  spec:
+    containers:
+    - image: dockersamples/examplevotingapp_vote
+      imagePullPolicy: Always
+      name: vote
+      ports:
+      - containerPort: 80
+        name: vote
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-xx45v
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-xx45v
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:22Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:19Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:22Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:22Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:19Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://f57542be4c737f1c86be42146b5c9dade552e2710bdfcb5f8873cfe256a81dad
+      image: docker.io/dockersamples/examplevotingapp_vote:latest
+      imageID: docker.io/dockersamples/examplevotingapp_vote@sha256:7102d3b952ec84e3541ee12e7217e320c52aed60b13501c3158f46376a907466
+      lastState: {}
+      name: vote
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T20:01:21Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-xx45v
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.49
+    podIPs:
+    - ip: 10.244.0.49
+    qosClass: BestEffort
+    startTime: "2025-12-19T20:01:19Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:15+05:00"
+    creationTimestamp: "2025-12-19T20:01:16Z"
+    generateName: vote-77cc578dd-
+    generation: 1
+    labels:
+      app: vote
+      pod-template-hash: 77cc578dd
+    name: vote-77cc578dd-z4nnb
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: vote-77cc578dd
+      uid: 5b846fe6-ad14-4890-806b-33d96201abc0
+    resourceVersion: "43393"
+    uid: bb32e694-984c-4f2c-a422-2814edfcd966
+  spec:
+    containers:
+    - image: dockersamples/examplevotingapp_vote
+      imagePullPolicy: Always
+      name: vote
+      ports:
+      - containerPort: 80
+        name: vote
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-4xxxp
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-4xxxp
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:19Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:16Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:19Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:19Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T20:01:16Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://35ec6d8357c84f6afa6e721845a4d07f797a4db79e7678f377774cbf68a7d230
+      image: docker.io/dockersamples/examplevotingapp_vote:latest
+      imageID: docker.io/dockersamples/examplevotingapp_vote@sha256:7102d3b952ec84e3541ee12e7217e320c52aed60b13501c3158f46376a907466
+      lastState: {}
+      name: vote
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T20:01:18Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-4xxxp
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.120
+    podIPs:
+    - ip: 10.244.0.120
+    qosClass: BestEffort
+    startTime: "2025-12-19T20:01:16Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-12-19T18:45:58Z"
+    generateName: worker-6f5f6cdd56-
+    generation: 1
+    labels:
+      app: worker
+      pod-template-hash: 6f5f6cdd56
+    name: worker-6f5f6cdd56-f88ww
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: worker-6f5f6cdd56
+      uid: 8330c9bf-a32e-4617-af2c-d19b377314ac
+    resourceVersion: "23305"
+    uid: 07e3a8c0-6a83-4d4e-9852-b51177af7294
+  spec:
+    containers:
+    - image: dockersamples/examplevotingapp_worker
+      imagePullPolicy: Always
+      name: worker
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-92w2l
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: aks-testnode-30486093-vms1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-92w2l
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:12Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:58Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:12Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:46:12Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-12-19T18:45:58Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://ef5c97cf7f6bfdfd83e0edd662c4549005c64653224c6259ec04f3d6921fb28e
+      image: docker.io/dockersamples/examplevotingapp_worker:latest
+      imageID: docker.io/dockersamples/examplevotingapp_worker@sha256:c8a8571065479c12567e8e440836e543d185c678cd4781a32b100f71e8f39c86
+      lastState: {}
+      name: worker
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-12-19T18:46:11Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-92w2l
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 10.224.0.4
+    hostIPs:
+    - ip: 10.224.0.4
+    phase: Running
+    podIP: 10.244.0.5
+    podIPs:
+    - ip: 10.244.0.5
+    qosClass: BestEffort
+    startTime: "2025-12-19T18:45:58Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"db"},"name":"db","namespace":"default"},"spec":{"ports":[{"name":"db-service","port":5432,"targetPort":5432}],"selector":{"app":"db"},"type":"ClusterIP"}}
+    creationTimestamp: "2025-12-19T18:45:54Z"
+    labels:
+      app: db
+    name: db
+    namespace: default
+    resourceVersion: "23111"
+    uid: 1770bfd9-da8a-483b-9fb2-a5dbc3b46f2f
+  spec:
+    clusterIP: 10.0.95.75
+    clusterIPs:
+    - 10.0.95.75
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: db-service
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
+    selector:
+      app: db
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2025-12-19T17:21:50Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "218"
+    uid: c3b4ee60-3694-4cee-8d02-ff3c74cc9bcb
+  spec:
+    clusterIP: 10.0.0.1
+    clusterIPs:
+    - 10.0.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"redis"},"name":"redis","namespace":"default"},"spec":{"ports":[{"name":"redis-service","port":6379,"targetPort":6379}],"selector":{"app":"redis"},"type":"ClusterIP"}}
+    creationTimestamp: "2025-12-19T18:45:56Z"
+    labels:
+      app: redis
+    name: redis
+    namespace: default
+    resourceVersion: "23142"
+    uid: 28fa777e-480a-45b3-b85b-42b4743a04eb
+  spec:
+    clusterIP: 10.0.234.182
+    clusterIPs:
+    - 10.0.234.182
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: redis-service
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
+    selector:
+      app: redis
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"result"},"name":"result","namespace":"default"},"spec":{"ports":[{"name":"result-service","nodePort":31001,"port":8081,"targetPort":80}],"selector":{"app":"result"},"type":"NodePort"}}
+    creationTimestamp: "2025-12-19T18:45:57Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      app: result
+    name: result
+    namespace: default
+    resourceVersion: "26529"
+    uid: b64cc9cc-bc8e-4093-9b23-3dfe8e48a812
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 10.0.204.30
+    clusterIPs:
+    - 10.0.204.30
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: result-service
+      nodePort: 31001
+      port: 8081
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: result
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 135.171.217.6
+        ipMode: VIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"vote"},"name":"vote","namespace":"default"},"spec":{"ports":[{"name":"vote-service","nodePort":31000,"port":8080,"targetPort":80}],"selector":{"app":"vote"},"type":"NodePort"}}
+    creationTimestamp: "2025-12-19T18:45:58Z"
+    finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+    labels:
+      app: vote
+    name: vote
+    namespace: default
+    resourceVersion: "26880"
+    uid: 06387ca4-d768-49db-b861-ed1c5188def5
+  spec:
+    allocateLoadBalancerNodePorts: true
+    clusterIP: 10.0.148.216
+    clusterIPs:
+    - 10.0.148.216
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: vote-service
+      nodePort: 31000
+      port: 8080
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: vote
+    sessionAffinity: None
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 4.144.252.209
+        ipMode: VIP
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"db"},"name":"db","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"db"}},"template":{"metadata":{"labels":{"app":"db"}},"spec":{"containers":[{"env":[{"name":"POSTGRES_USER","value":"postgres"},{"name":"POSTGRES_PASSWORD","value":"postgres"}],"image":"postgres:15-alpine","name":"postgres","ports":[{"containerPort":5432,"name":"postgres"}],"volumeMounts":[{"mountPath":"/var/lib/postgresql/data","name":"db-data"}]}],"volumes":[{"emptyDir":{},"name":"db-data"}]}}}}
+    creationTimestamp: "2025-12-19T18:45:53Z"
+    generation: 1
+    labels:
+      app: db
+    name: db
+    namespace: default
+    resourceVersion: "23274"
+    uid: e50eb718-6fe7-4c8c-920a-70d1d7f70bce
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: db
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: db
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
+          image: postgres:15-alpine
+          imagePullPolicy: IfNotPresent
+          name: postgres
+          ports:
+          - containerPort: 5432
+            name: postgres
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: db-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: db-data
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2025-12-19T18:46:10Z"
+      lastUpdateTime: "2025-12-19T18:46:10Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2025-12-19T18:45:53Z"
+      lastUpdateTime: "2025-12-19T18:46:10Z"
+      message: ReplicaSet "db-74574d66dd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"redis"},"name":"redis","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"redis"}},"template":{"metadata":{"labels":{"app":"redis"}},"spec":{"containers":[{"image":"redis:alpine","name":"redis","ports":[{"containerPort":6379,"name":"redis"}],"volumeMounts":[{"mountPath":"/data","name":"redis-data"}]}],"volumes":[{"emptyDir":{},"name":"redis-data"}]}}}}
+    creationTimestamp: "2025-12-19T18:45:55Z"
+    generation: 1
+    labels:
+      app: redis
+    name: redis
+    namespace: default
+    resourceVersion: "23241"
+    uid: 33c10d88-9ba0-48ba-9bb1-ba9bce75575d
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: redis
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: redis
+      spec:
+        containers:
+        - image: redis:alpine
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports:
+          - containerPort: 6379
+            name: redis
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data
+            name: redis-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: redis-data
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2025-12-19T18:46:04Z"
+      lastUpdateTime: "2025-12-19T18:46:04Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2025-12-19T18:45:55Z"
+      lastUpdateTime: "2025-12-19T18:46:04Z"
+      message: ReplicaSet "redis-6c5fb9c4b7" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"result"},"name":"result","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"result"}},"template":{"metadata":{"labels":{"app":"result"}},"spec":{"containers":[{"image":"dockersamples/examplevotingapp_result","name":"result","ports":[{"containerPort":80,"name":"result"}]}]}}}}
+    creationTimestamp: "2025-12-19T18:45:56Z"
+    generation: 3
+    labels:
+      app: result
+    name: result
+    namespace: default
+    resourceVersion: "43673"
+    uid: ac10ea1d-63eb-425a-8a03-9f08b49b5597
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: result
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:51+05:00"
+        creationTimestamp: null
+        labels:
+          app: result
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_result
+          imagePullPolicy: Always
+          name: result
+          ports:
+          - containerPort: 80
+            name: result
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:23:58Z"
+      lastUpdateTime: "2025-12-19T19:23:58Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2025-12-19T18:45:56Z"
+      lastUpdateTime: "2025-12-19T20:01:58Z"
+      message: ReplicaSet "result-7df6cfd5f8" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 3
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"vote"},"name":"vote","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"vote"}},"template":{"metadata":{"labels":{"app":"vote"}},"spec":{"containers":[{"image":"dockersamples/examplevotingapp_vote","name":"vote","ports":[{"containerPort":80,"name":"vote"}]}]}}}}
+    creationTimestamp: "2025-12-19T18:45:57Z"
+    generation: 3
+    labels:
+      app: vote
+    name: vote
+    namespace: default
+    resourceVersion: "43452"
+    uid: c3d6f04d-f63f-4820-87cc-4d3276b454a4
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: vote
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:15+05:00"
+        creationTimestamp: null
+        labels:
+          app: vote
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_vote
+          imagePullPolicy: Always
+          name: vote
+          ports:
+          - containerPort: 80
+            name: vote
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:42:43Z"
+      lastUpdateTime: "2025-12-19T19:42:43Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2025-12-19T18:45:57Z"
+      lastUpdateTime: "2025-12-19T20:01:22Z"
+      message: ReplicaSet "vote-77cc578dd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 3
+    readyReplicas: 2
+    replicas: 2
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"worker"},"name":"worker","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"worker"}},"template":{"metadata":{"labels":{"app":"worker"}},"spec":{"containers":[{"image":"dockersamples/examplevotingapp_worker","name":"worker"}]}}}}
+    creationTimestamp: "2025-12-19T18:45:58Z"
+    generation: 1
+    labels:
+      app: worker
+    name: worker
+    namespace: default
+    resourceVersion: "23307"
+    uid: 3be5cc68-7881-406b-854f-39c8ed320108
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: worker
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: worker
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_worker
+          imagePullPolicy: Always
+          name: worker
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2025-12-19T18:46:12Z"
+      lastUpdateTime: "2025-12-19T18:46:12Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2025-12-19T18:45:58Z"
+      lastUpdateTime: "2025-12-19T18:46:12Z"
+      message: ReplicaSet "worker-6f5f6cdd56" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2025-12-19T18:45:53Z"
+    generation: 1
+    labels:
+      app: db
+      pod-template-hash: 74574d66dd
+    name: db-74574d66dd
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: db
+      uid: e50eb718-6fe7-4c8c-920a-70d1d7f70bce
+    resourceVersion: "23273"
+    uid: e731cacc-f9a9-442c-8fb2-abf97b4b4b7e
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: db
+        pod-template-hash: 74574d66dd
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: db
+          pod-template-hash: 74574d66dd
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
+          image: postgres:15-alpine
+          imagePullPolicy: IfNotPresent
+          name: postgres
+          ports:
+          - containerPort: 5432
+            name: postgres
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: db-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: db-data
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2025-12-19T18:45:55Z"
+    generation: 1
+    labels:
+      app: redis
+      pod-template-hash: 6c5fb9c4b7
+    name: redis-6c5fb9c4b7
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: redis
+      uid: 33c10d88-9ba0-48ba-9bb1-ba9bce75575d
+    resourceVersion: "23240"
+    uid: 3767a562-a821-4c36-91ca-475a7c96cdd7
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: redis
+        pod-template-hash: 6c5fb9c4b7
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: redis
+          pod-template-hash: 6c5fb9c4b7
+      spec:
+        containers:
+        - image: redis:alpine
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports:
+          - containerPort: 6379
+            name: redis
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data
+            name: redis-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: redis-data
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2025-12-19T18:45:56Z"
+    generation: 4
+    labels:
+      app: result
+      pod-template-hash: 5f99548f7c
+    name: result-5f99548f7c
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: result
+      uid: ac10ea1d-63eb-425a-8a03-9f08b49b5597
+    resourceVersion: "43672"
+    uid: 01cdea21-bd2e-482c-bf34-77074061383e
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: result
+        pod-template-hash: 5f99548f7c
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: result
+          pod-template-hash: 5f99548f7c
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_result
+          imagePullPolicy: Always
+          name: result
+          ports:
+          - containerPort: 80
+            name: result
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2025-12-19T20:01:52Z"
+    generation: 2
+    labels:
+      app: result
+      pod-template-hash: 7df6cfd5f8
+    name: result-7df6cfd5f8
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: result
+      uid: ac10ea1d-63eb-425a-8a03-9f08b49b5597
+    resourceVersion: "43661"
+    uid: 35ccdd56-6b30-4467-9f40-9b7ed5a82117
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: result
+        pod-template-hash: 7df6cfd5f8
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:51+05:00"
+        creationTimestamp: null
+        labels:
+          app: result
+          pod-template-hash: 7df6cfd5f8
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_result
+          imagePullPolicy: Always
+          name: result
+          ports:
+          - containerPort: 80
+            name: result
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2025-12-19T18:45:57Z"
+    generation: 4
+    labels:
+      app: vote
+      pod-template-hash: 5d74dcd7c7
+    name: vote-5d74dcd7c7
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: vote
+      uid: c3d6f04d-f63f-4820-87cc-4d3276b454a4
+    resourceVersion: "43451"
+    uid: 6d88241e-73ad-4d6b-977b-93d7a3ac74df
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: vote
+        pod-template-hash: 5d74dcd7c7
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: vote
+          pod-template-hash: 5d74dcd7c7
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_vote
+          imagePullPolicy: Always
+          name: vote
+          ports:
+          - containerPort: 80
+            name: vote
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 4
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2025-12-19T20:01:16Z"
+    generation: 2
+    labels:
+      app: vote
+      pod-template-hash: 77cc578dd
+    name: vote-77cc578dd
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: vote
+      uid: c3d6f04d-f63f-4820-87cc-4d3276b454a4
+    resourceVersion: "43441"
+    uid: 5b846fe6-ad14-4890-806b-33d96201abc0
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: vote
+        pod-template-hash: 77cc578dd
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2025-12-20T01:01:15+05:00"
+        creationTimestamp: null
+        labels:
+          app: vote
+          pod-template-hash: 77cc578dd
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_vote
+          imagePullPolicy: Always
+          name: vote
+          ports:
+          - containerPort: 80
+            name: vote
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2025-12-19T18:45:58Z"
+    generation: 1
+    labels:
+      app: worker
+      pod-template-hash: 6f5f6cdd56
+    name: worker-6f5f6cdd56
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: worker
+      uid: 3be5cc68-7881-406b-854f-39c8ed320108
+    resourceVersion: "23306"
+    uid: 8330c9bf-a32e-4617-af2c-d19b377314ac
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: worker
+        pod-template-hash: 6f5f6cdd56
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: worker
+          pod-template-hash: 6f5f6cdd56
+      spec:
+        containers:
+        - image: dockersamples/examplevotingapp_worker
+          imagePullPolicy: Always
+          name: worker
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2025-12-19T19:23:39Z"
+    name: result
+    namespace: default
+    resourceVersion: "1007084"
+    uid: cdd1a93a-f4ad-42b5-bb89-805abf08b07a
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: result
+  status:
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:23:55Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2025-12-19T19:24:10Z"
+      message: 'the HPA was unable to compute the replica count: failed to get cpu
+        utilization: missing request for cpu in container result of Pod result-7df6cfd5f8-28xds'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics:
+    - type: ""
+    currentReplicas: 2
+    desiredReplicas: 2
+    lastScaleTime: "2025-12-19T19:23:55Z"
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2025-12-19T19:19:25Z"
+    name: vote
+    namespace: default
+    resourceVersion: "1007302"
+    uid: 3f09bc50-2495-410c-9382-546d4d12b510
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: vote
+  status:
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:19:40Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2025-12-19T19:19:55Z"
+      message: 'the HPA was unable to compute the replica count: failed to get cpu
+        utilization: missing request for cpu in container vote of Pod vote-77cc578dd-xmww8'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics:
+    - type: ""
+    currentReplicas: 2
+    desiredReplicas: 2
+    lastScaleTime: "2025-12-19T19:19:40Z"
+kind: List
+metadata:
+  resourceVersion: ""

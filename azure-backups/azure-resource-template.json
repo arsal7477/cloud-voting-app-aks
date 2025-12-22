@@ -1,0 +1,282 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "managedClusters_voting_aks_cluster_name": {
+      "type": "String"
+    },
+    "userAssignedIdentities_voting_aks_cluster_agentpool_externalid": {
+      "type": "String"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2025-05-01",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "location": "southeastasia",
+      "name": "[parameters('managedClusters_voting_aks_cluster_name')]",
+      "properties": {
+        "addonProfiles": {
+          "azureKeyvaultSecretsProvider": {
+            "enabled": false
+          },
+          "azurepolicy": {
+            "enabled": false
+          }
+        },
+        "agentPoolProfiles": [
+          {
+            "availabilityZones": [
+              "1",
+              "2",
+              "3"
+            ],
+            "enableFIPS": false,
+            "enableNodePublicIP": false,
+            "kubeletDiskType": "OS",
+            "maxPods": 30,
+            "mode": "System",
+            "name": "testnode",
+            "orchestratorVersion": "1.33.5",
+            "osDiskSizeGB": 128,
+            "osDiskType": "Managed",
+            "osSKU": "AzureLinux",
+            "osType": "Linux",
+            "powerState": {
+              "code": "Running"
+            },
+            "scaleDownMode": "Delete",
+            "securityProfile": {
+              "enableSecureBoot": false,
+              "enableVTPM": false
+            },
+            "type": "VirtualMachines",
+            "upgradeSettings": {
+              "maxSurge": "10%",
+              "maxUnavailable": "0"
+            },
+            "virtualMachineNodesStatus": [
+              {
+                "count": 1,
+                "size": "Standard_D2plds_v5"
+              }
+            ],
+            "virtualMachinesProfile": {
+              "scale": {
+                "manual": [
+                  {
+                    "count": 1,
+                    "size": "Standard_D2plds_v5"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "autoUpgradeProfile": {
+          "nodeOSUpgradeChannel": "NodeImage",
+          "upgradeChannel": "patch"
+        },
+        "bootstrapProfile": {
+          "artifactSource": "Direct"
+        },
+        "disableLocalAccounts": false,
+        "dnsPrefix": "[concat(parameters('managedClusters_voting_aks_cluster_name'), '-dns')]",
+        "enableRBAC": true,
+        "identityProfile": {
+          "kubeletidentity": {
+            "clientId": "86084977-e45c-4df0-8c35-c7ea0a0821a5",
+            "objectId": "814d1b22-3bc2-41da-afc8-bdc261403a4d",
+            "resourceId": "[parameters('userAssignedIdentities_voting_aks_cluster_agentpool_externalid')]"
+          }
+        },
+        "kubernetesVersion": "1.33.5",
+        "metricsProfile": {
+          "costAnalysis": {
+            "enabled": false
+          }
+        },
+        "networkProfile": {
+          "dnsServiceIP": "10.0.0.10",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "loadBalancerProfile": {
+            "backendPoolType": "nodeIPConfiguration",
+            "managedOutboundIPs": {
+              "count": 1
+            }
+          },
+          "loadBalancerSku": "Standard",
+          "networkDataplane": "azure",
+          "networkPlugin": "azure",
+          "networkPluginMode": "overlay",
+          "networkPolicy": "none",
+          "outboundType": "loadBalancer",
+          "podCidr": "10.244.0.0/16",
+          "podCidrs": [
+            "10.244.0.0/16"
+          ],
+          "serviceCidr": "10.0.0.0/16",
+          "serviceCidrs": [
+            "10.0.0.0/16"
+          ]
+        },
+        "nodeProvisioningProfile": {
+          "defaultNodePools": "Auto",
+          "mode": "Manual"
+        },
+        "nodeResourceGroup": "[concat('MC_voting-app-rg_', parameters('managedClusters_voting_aks_cluster_name'), '_southeastasia')]",
+        "oidcIssuerProfile": {
+          "enabled": true
+        },
+        "securityProfile": {
+          "imageCleaner": {
+            "enabled": true,
+            "intervalHours": 168
+          },
+          "workloadIdentity": {
+            "enabled": true
+          }
+        },
+        "servicePrincipalProfile": {
+          "clientId": "msi"
+        },
+        "storageProfile": {
+          "diskCSIDriver": {
+            "enabled": true
+          },
+          "fileCSIDriver": {
+            "enabled": true
+          },
+          "snapshotController": {
+            "enabled": true
+          }
+        },
+        "supportPlan": "KubernetesOfficial",
+        "workloadAutoScalerProfile": {}
+      },
+      "sku": {
+        "name": "Base",
+        "tier": "Free"
+      },
+      "type": "Microsoft.ContainerService/managedClusters"
+    },
+    {
+      "apiVersion": "2025-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerService/managedClusters', parameters('managedClusters_voting_aks_cluster_name'))]"
+      ],
+      "name": "[concat(parameters('managedClusters_voting_aks_cluster_name'), '/testnode')]",
+      "properties": {
+        "availabilityZones": [
+          "1",
+          "2",
+          "3"
+        ],
+        "enableFIPS": false,
+        "enableNodePublicIP": false,
+        "kubeletDiskType": "OS",
+        "maxPods": 30,
+        "mode": "System",
+        "orchestratorVersion": "1.33.5",
+        "osDiskSizeGB": 128,
+        "osDiskType": "Managed",
+        "osSKU": "AzureLinux",
+        "osType": "Linux",
+        "powerState": {
+          "code": "Running"
+        },
+        "scaleDownMode": "Delete",
+        "securityProfile": {
+          "enableSecureBoot": false,
+          "enableVTPM": false
+        },
+        "type": "VirtualMachines",
+        "upgradeSettings": {
+          "maxSurge": "10%",
+          "maxUnavailable": "0"
+        },
+        "virtualMachineNodesStatus": [
+          {
+            "count": 1,
+            "size": "Standard_D2plds_v5"
+          }
+        ],
+        "virtualMachinesProfile": {
+          "scale": {
+            "manual": [
+              {
+                "count": 1,
+                "size": "Standard_D2plds_v5"
+              }
+            ]
+          }
+        }
+      },
+      "type": "Microsoft.ContainerService/managedClusters/agentPools"
+    },
+    {
+      "apiVersion": "2025-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerService/managedClusters', parameters('managedClusters_voting_aks_cluster_name'))]"
+      ],
+      "name": "[concat(parameters('managedClusters_voting_aks_cluster_name'), '/aksManagedAutoUpgradeSchedule')]",
+      "properties": {
+        "maintenanceWindow": {
+          "durationHours": 8,
+          "schedule": {
+            "weekly": {
+              "dayOfWeek": "Sunday",
+              "intervalWeeks": 1
+            }
+          },
+          "startDate": "2025-12-20",
+          "startTime": "00:00",
+          "utcOffset": "+00:00"
+        }
+      },
+      "type": "Microsoft.ContainerService/managedClusters/maintenanceConfigurations"
+    },
+    {
+      "apiVersion": "2025-05-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerService/managedClusters', parameters('managedClusters_voting_aks_cluster_name'))]"
+      ],
+      "name": "[concat(parameters('managedClusters_voting_aks_cluster_name'), '/aksManagedNodeOSUpgradeSchedule')]",
+      "properties": {
+        "maintenanceWindow": {
+          "durationHours": 8,
+          "schedule": {
+            "weekly": {
+              "dayOfWeek": "Sunday",
+              "intervalWeeks": 1
+            }
+          },
+          "startDate": "2025-12-20",
+          "startTime": "00:00",
+          "utcOffset": "+00:00"
+        }
+      },
+      "type": "Microsoft.ContainerService/managedClusters/maintenanceConfigurations"
+    },
+    {
+      "apiVersion": "2025-04-02-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerService/managedClusters/agentPools', parameters('managedClusters_voting_aks_cluster_name'), 'testnode')]",
+        "[resourceId('Microsoft.ContainerService/managedClusters', parameters('managedClusters_voting_aks_cluster_name'))]"
+      ],
+      "name": "[concat(parameters('managedClusters_voting_aks_cluster_name'), '/testnode/aks-testnode-30486093-vms1')]",
+      "properties": {
+        "network": {}
+      },
+      "type": "Microsoft.ContainerService/managedClusters/agentPools/machines",
+      "zones": [
+        "1"
+      ]
+    }
+  ],
+  "variables": {}
+}

@@ -1,0 +1,85 @@
+apiVersion: v1
+items:
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2025-12-19T19:23:39Z"
+    name: result
+    namespace: default
+    resourceVersion: "1007084"
+    uid: cdd1a93a-f4ad-42b5-bb89-805abf08b07a
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: result
+  status:
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:23:55Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2025-12-19T19:24:10Z"
+      message: 'the HPA was unable to compute the replica count: failed to get cpu
+        utilization: missing request for cpu in container result of Pod result-7df6cfd5f8-28xds'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics:
+    - type: ""
+    currentReplicas: 2
+    desiredReplicas: 2
+    lastScaleTime: "2025-12-19T19:23:55Z"
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    creationTimestamp: "2025-12-19T19:19:25Z"
+    name: vote
+    namespace: default
+    resourceVersion: "1008890"
+    uid: 3f09bc50-2495-410c-9382-546d4d12b510
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 50
+          type: Utilization
+      type: Resource
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: vote
+  status:
+    conditions:
+    - lastTransitionTime: "2025-12-19T19:19:40Z"
+      message: the HPA controller was able to get the target's current scale
+      reason: SucceededGetScale
+      status: "True"
+      type: AbleToScale
+    - lastTransitionTime: "2025-12-19T19:19:55Z"
+      message: 'the HPA was unable to compute the replica count: failed to get cpu
+        utilization: missing request for cpu in container vote of Pod vote-77cc578dd-z4nnb'
+      reason: FailedGetResourceMetric
+      status: "False"
+      type: ScalingActive
+    currentMetrics:
+    - type: ""
+    currentReplicas: 2
+    desiredReplicas: 2
+    lastScaleTime: "2025-12-19T19:19:40Z"
+kind: List
+metadata:
+  resourceVersion: ""

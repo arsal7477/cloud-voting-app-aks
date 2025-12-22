@@ -1,0 +1,265 @@
+{
+  "aadProfile": null,
+  "addonProfiles": {
+    "azureKeyvaultSecretsProvider": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    },
+    "azurepolicy": {
+      "config": null,
+      "enabled": false,
+      "identity": null
+    }
+  },
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": [
+        "1",
+        "2",
+        "3"
+      ],
+      "capacityReservationGroupId": null,
+      "count": null,
+      "creationData": null,
+      "currentOrchestratorVersion": "1.33.5",
+      "eTag": "c971dc18-6b5c-488f-8845-746e906ba45d",
+      "enableAutoScaling": null,
+      "enableEncryptionAtHost": null,
+      "enableFips": false,
+      "enableNodePublicIp": false,
+      "enableUltraSsd": null,
+      "gatewayProfile": null,
+      "gpuInstanceProfile": null,
+      "gpuProfile": null,
+      "hostGroupId": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "localDnsProfile": null,
+      "maxCount": null,
+      "maxPods": 30,
+      "messageOfTheDay": null,
+      "minCount": null,
+      "mode": "System",
+      "name": "testnode",
+      "networkProfile": null,
+      "nodeImageVersion": "AKSAzureLinux-V3gen2arm64-202512.06.0",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.33.5",
+      "osDiskSizeGb": 128,
+      "osDiskType": "Managed",
+      "osSku": "AzureLinux",
+      "osType": "Linux",
+      "podIpAllocationMode": null,
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleDownMode": "Delete",
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "securityProfile": {
+        "enableSecureBoot": false,
+        "enableVtpm": false,
+        "sshAccess": null
+      },
+      "spotMaxPrice": null,
+      "status": null,
+      "tags": null,
+      "type": "VirtualMachines",
+      "upgradeSettings": {
+        "drainTimeoutInMinutes": null,
+        "maxSurge": "10%",
+        "maxUnavailable": "0",
+        "nodeSoakDurationInMinutes": null,
+        "undrainableNodeBehavior": null
+      },
+      "virtualMachineNodesStatus": [
+        {
+          "count": 1,
+          "size": "Standard_D2plds_v5"
+        }
+      ],
+      "virtualMachinesProfile": {
+        "scale": {
+          "manual": [
+            {
+              "count": 1,
+              "size": "Standard_D2plds_v5"
+            }
+          ]
+        }
+      },
+      "vmSize": "",
+      "windowsProfile": null,
+      "workloadRuntime": null
+    }
+  ],
+  "aiToolchainOperatorProfile": null,
+  "apiServerAccessProfile": {
+    "authorizedIpRanges": null,
+    "disableRunCommand": null,
+    "enablePrivateCluster": false,
+    "enablePrivateClusterPublicFqdn": null,
+    "enableVnetIntegration": null,
+    "privateDnsZone": null,
+    "subnetId": null
+  },
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": {
+    "nodeOsUpgradeChannel": "NodeImage",
+    "upgradeChannel": "patch"
+  },
+  "azureMonitorProfile": null,
+  "azurePortalFqdn": "voting-aks-cluster-dns-giudbllq.portal.hcp.southeastasia.azmk8s.io",
+  "bootstrapProfile": {
+    "artifactSource": "Direct",
+    "containerRegistryId": null
+  },
+  "currentKubernetesVersion": "1.33.5",
+  "disableLocalAccounts": false,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "voting-aks-cluster-dns",
+  "eTag": "f9c870bb-5602-450e-9b2a-9a4b13ccc1a0",
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "voting-aks-cluster-dns-giudbllq.hcp.southeastasia.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/bcb59c26-1db3-414f-8d58-d02d30c5de6e/resourcegroups/voting-app-rg/providers/Microsoft.ContainerService/managedClusters/voting-aks-cluster",
+  "identity": {
+    "delegatedResources": null,
+    "principalId": "afe6c26d-4c60-4d66-920d-b615470c8e19",
+    "tenantId": "57f0121b-caa2-4c2d-9b9b-daddb112ce5c",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "identityProfile": {
+    "kubeletidentity": {
+      "clientId": "86084977-e45c-4df0-8c35-c7ea0a0821a5",
+      "objectId": "814d1b22-3bc2-41da-afc8-bdc261403a4d",
+      "resourceId": "/subscriptions/bcb59c26-1db3-414f-8d58-d02d30c5de6e/resourcegroups/MC_voting-app-rg_voting-aks-cluster_southeastasia/providers/Microsoft.ManagedIdentity/userAssignedIdentities/voting-aks-cluster-agentpool"
+    }
+  },
+  "ingressProfile": null,
+  "kind": "Base",
+  "kubernetesVersion": "1.33.5",
+  "linuxProfile": null,
+  "location": "southeastasia",
+  "maxAgentPools": 100,
+  "metricsProfile": {
+    "costAnalysis": {
+      "enabled": false
+    }
+  },
+  "name": "voting-aks-cluster",
+  "networkProfile": {
+    "advancedNetworking": null,
+    "dnsServiceIp": "10.0.0.10",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "backendPoolType": "nodeIPConfiguration",
+      "effectiveOutboundIPs": [
+        {
+          "id": "/subscriptions/bcb59c26-1db3-414f-8d58-d02d30c5de6e/resourceGroups/MC_voting-app-rg_voting-aks-cluster_southeastasia/providers/Microsoft.Network/publicIPAddresses/2295ef25-d62a-4c7c-a14e-1a41315dcd85",
+          "resourceGroup": "MC_voting-app-rg_voting-aks-cluster_southeastasia"
+        }
+      ],
+      "enableMultipleStandardLoadBalancers": null,
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIPs": {
+        "count": 1,
+        "countIpv6": null
+      },
+      "outboundIPs": null,
+      "outboundIpPrefixes": null
+    },
+    "loadBalancerSku": "Standard",
+    "natGatewayProfile": null,
+    "networkDataplane": "azure",
+    "networkMode": null,
+    "networkPlugin": "azure",
+    "networkPluginMode": "overlay",
+    "networkPolicy": "none",
+    "outboundType": "loadBalancer",
+    "podCidr": "10.244.0.0/16",
+    "podCidrs": [
+      "10.244.0.0/16"
+    ],
+    "serviceCidr": "10.0.0.0/16",
+    "serviceCidrs": [
+      "10.0.0.0/16"
+    ],
+    "staticEgressGatewayProfile": null
+  },
+  "nodeProvisioningProfile": {
+    "defaultNodePools": "Auto",
+    "mode": "Manual"
+  },
+  "nodeResourceGroup": "MC_voting-app-rg_voting-aks-cluster_southeastasia",
+  "nodeResourceGroupProfile": null,
+  "oidcIssuerProfile": {
+    "enabled": true,
+    "issuerUrl": "https://southeastasia.oic.prod-aks.azure.com/57f0121b-caa2-4c2d-9b9b-daddb112ce5c/cf104a04-3be6-4aaf-9a5c-04792b2868ac/"
+  },
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": null,
+  "resourceGroup": "voting-app-rg",
+  "resourceUid": "6945892ba35e250001655c13",
+  "securityProfile": {
+    "azureKeyVaultKms": null,
+    "customCaTrustCertificates": null,
+    "defender": null,
+    "imageCleaner": {
+      "enabled": true,
+      "intervalHours": 168
+    },
+    "workloadIdentity": {
+      "enabled": true
+    }
+  },
+  "serviceMeshProfile": null,
+  "servicePrincipalProfile": {
+    "clientId": "msi"
+  },
+  "sku": {
+    "name": "Base",
+    "tier": "Free"
+  },
+  "status": null,
+  "storageProfile": {
+    "blobCsiDriver": null,
+    "diskCsiDriver": {
+      "enabled": true
+    },
+    "fileCsiDriver": {
+      "enabled": true
+    },
+    "snapshotController": {
+      "enabled": true
+    }
+  },
+  "supportPlan": "KubernetesOfficial",
+  "systemData": null,
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "upgradeSettings": null,
+  "windowsProfile": null,
+  "workloadAutoScalerProfile": {
+    "keda": null,
+    "verticalPodAutoscaler": null
+  }
+}
